@@ -3,7 +3,10 @@
 import requests
 import json
 from datetime import datetime
-# Removed: import os # No longer needed without mock data file operations
+import logging
+
+# Configure logger
+logger = logging.getLogger(__name__)
 
 class RedDealsAgent:
     """
@@ -12,6 +15,7 @@ class RedDealsAgent:
     """
     def __init__(self, api_base_url: str = "http://api-rbplus-prod.redbus.in/api/Campaign/GetAllCampaignDetails"):
         self.api_base_url = api_base_url
+        logger.info(f"RedDealsAgent initialized with API URL: {api_base_url}")
         # Removed: self.use_mock_data = use_mock_data
         # Removed: self.mock_data_path = mock_data_path
 
@@ -25,18 +29,22 @@ class RedDealsAgent:
             "isInternational": str(is_international).lower()
         }
         try:
-            print(f"RedDealsAgent:start Fetching raw data from: {self.api_base_url} with params: {params} with:{datetime.now()}")
+            logger.info(f"Fetching campaign data for operator_id: {operator_id}, is_international: {is_international}")
+            start_time = datetime.now()
+            
             response = requests.get(self.api_base_url, params=params, timeout=1500)
-            print(f"RedDealsAgent:end Fetching raw data from: {self.api_base_url} with params: {params} with:{datetime.now()}")
+            
+            end_time = datetime.now()
+            duration = (end_time - start_time).total_seconds()
+            logger.info(f"API call completed in {duration:.2f} seconds with status: {response.status_code}")
 
-            response.raise_for_status() # Raises HTTPError for bad responses (4xx or 5xx)
-            print(f"RedDealsAgent: API call successful, Status: {response.status_code}")
+            response.raise_for_status()
             return response.json()
         except requests.exceptions.Timeout:
-            print("RedDealsAgent Error: API request timed out.")
+            logger.error("API request timed out after 1500 seconds")
             return None
         except requests.exceptions.RequestException as e:
-            print(f"RedDealsAgent Error fetching API data: {e}")
+            logger.error(f"Failed to fetch API data: {str(e)}")
             return None
 
     def get_red_deals_data(self, operator_id: int, is_international: bool, filter_keyword: str = None, include_expired: bool = False) -> str:
@@ -53,9 +61,12 @@ class RedDealsAgent:
         Returns:
             str: A formatted string summarizing the relevant RedDeals.
         """
+        logger.info(f"Getting red deals data - operator_id: {operator_id}, is_international: {is_international}, filter_keyword: {filter_keyword}, include_expired: {include_expired}")
+        
         campaign_data = self._fetch_campaign_data(operator_id, is_international)
 
         if not campaign_data or not campaign_data.get("Data"):
+            logger.warning("No campaign data available")
             return "No campaign data was provided or available to analyze."
 
         red_deals_list = []
@@ -89,8 +100,8 @@ class RedDealsAgent:
                             max_discount_limit = note.replace("Maximum discount limit : ", "").strip()
                 else:
                     pass
-            except (json.JSONDecodeError, TypeError):
-                pass
+            except (json.JSONDecodeError, TypeError) as e:
+                logger.warning(f"Failed to parse campaign notes for {campaign_title}: {str(e)}")
 
             discount_value = campaign.get("discountValue", 0.0)
             discount_percent = campaign.get("discountPercent", 0.0)
@@ -122,10 +133,13 @@ class RedDealsAgent:
         
         if not red_deals_list:
             if filter_keyword:
+                logger.info(f"No deals found matching filter keyword: {filter_keyword}")
                 return f"No specific 'RedDeals' found matching '{filter_keyword}'."
             else:
+                logger.info("No deals found")
                 return "No current 'RedDeals' were found." if not include_expired else "No RedDeals (including expired) were found."
 
+        logger.info(f"Found {len(red_deals_list)} deals")
         return (
             "Available RedBus Deals:\n\n" +
             "\n---\n\n".join(red_deals_list) +

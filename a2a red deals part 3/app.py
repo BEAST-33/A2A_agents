@@ -28,7 +28,7 @@ OLLAMA_MODEL_NAME = "mistral:7b-instruct"
 # --- Initialize Agents ---
 # Initializing RedDealsAgent without mock data parameters
 red_deals_agent = RedDealsAgent()
-logger.warning("RedDealsAgent initialized")
+logger.info("RedDealsAgent initialized")
 
 # --- Define Available Tools/Functions for Ollama ---
 AVAILABLE_TOOLS = {
@@ -41,7 +41,7 @@ def call_ollama(messages: list) -> dict:
     """
     Sends messages to the Ollama instance and returns the full JSON response.
     """
-    logger.warning(f"Calling Ollama with {len(messages)} messages")
+    logger.info(f"Calling Ollama with {len(messages)} messages")
     payload = {
         "model": OLLAMA_MODEL_NAME,
         "messages": messages,
@@ -54,7 +54,7 @@ def call_ollama(messages: list) -> dict:
     try:
         response = requests.post(OLLAMA_API_URL, json=payload)
         response.raise_for_status()
-        logger.warning("Successfully received response from Ollama")
+        logger.info("Successfully received response from Ollama")
         return response.json()
     except requests.exceptions.Timeout:
         logger.error("Ollama response timed out")
@@ -70,7 +70,7 @@ def orchestrate_query(user_query: str, session_operator_id: int) -> str:
     Orchestrates the interaction between the user, Ollama, and the RedDealsAgent.
     The session_operator_id is provided by the UI.
     """
-    logger.warning(f"Starting orchestration for query: {user_query} with operator_id: {session_operator_id}")
+    logger.info(f"Starting orchestration for query: {user_query} with operator_id: {session_operator_id}")
     
     system_prompt = f"""
 You are an intelligent assistant named RedBusBot that can provide information about RedBus deals.
@@ -108,14 +108,14 @@ If you cannot find relevant deals or cannot use the tool, respond naturally to t
     ]
     
     ollama_response = call_ollama(messages)
-    logger.warning("Received initial Ollama response")
+    logger.info("Received initial Ollama response")
 
     if ollama_response.get("error"):
         logger.error(f"Ollama returned an error: {ollama_response['error']}")
         return f"Sorry, I encountered an error communicating with Ollama: {ollama_response['error']}"
 
     ollama_content = ollama_response["message"]["content"]
-    logger.warning("Processing Ollama content")
+    logger.info("Processing Ollama content")
     
     try:
         response_json = json.loads(ollama_content)
@@ -125,7 +125,7 @@ If you cannot find relevant deals or cannot use the tool, respond naturally to t
             tool_params = tool_call.get("parameters", {})
 
             if tool_name in AVAILABLE_TOOLS:
-                logger.warning(f"Executing tool '{tool_name}' with params: {tool_params}")
+                logger.info(f"Executing tool '{tool_name}' with params: {tool_params}")
                 
                 tool_function = AVAILABLE_TOOLS[tool_name]
                 
@@ -135,13 +135,13 @@ If you cannot find relevant deals or cannot use the tool, respond naturally to t
                 tool_params.setdefault('include_expired', False)
 
                 tool_result = tool_function(**tool_params)
-                logger.warning(f"Tool '{tool_name}' execution completed")
+                logger.info(f"Tool '{tool_name}' execution completed")
 
                 messages.append({"role": "tool", "content": tool_result})
                 messages.append({"role": "user", "content": "Based on the tool output, please answer the original query concisely and ONLY use information from the provided tool output. Do not add external details or invent deals."})
                 
                 final_ollama_response = call_ollama(messages)
-                logger.warning("Received final Ollama response")
+                logger.info("Received final Ollama response")
 
                 if final_ollama_response.get("error"):
                     logger.error(f"Error during final interpretation: {final_ollama_response['error']}")
@@ -163,7 +163,7 @@ If you cannot find relevant deals or cannot use the tool, respond naturally to t
 @app.route('/')
 def index():
     """Serves the main chatbot HTML page."""
-    logger.warning("Serving index page")
+    logger.info("Serving index page")
     return render_template('index.html')
 
 @app.route('/chat', methods=['POST'])
@@ -173,7 +173,7 @@ def chat():
     user_operator_id = request.json.get('operator_id')
 
     if not user_message:
-        logger.warning("Empty message received")
+        logger.info("Empty message received")
         return jsonify({"response": "Please enter a message."}), 400
     
     # Ensure operator_id is an integer, default if not provided or invalid
@@ -186,14 +186,14 @@ def chat():
     except ValueError:
         user_operator_id = 15926
 
-    logger.warning(f"Processing chat request - Message: '{user_message}', Operator ID: {user_operator_id}")
+    logger.info(f"Processing chat request - Message: '{user_message}', Operator ID: {user_operator_id}")
 
     bot_response = orchestrate_query(user_message, user_operator_id)
     
-    logger.warning("Sending response back to UI")
+    logger.info("Sending response back to UI")
     return jsonify({"response": bot_response})
 
 # --- Main application entry point ---
 if __name__ == '__main__':
-    logger.warning("Starting Flask application")
+    logger.info("Starting Flask application")
     app.run(debug=True, port=5000)
