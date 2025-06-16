@@ -1,0 +1,156 @@
+/* static/css/style.css (UPDATED - added styles for operator ID input) */
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.chat-container {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 700px;
+    height: 80vh; /* Adjust height to accommodate new input */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.chat-header {
+    background-color: #e53935; /* RedBus red */
+    color: white;
+    padding: 15px 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+/* New styles for operator ID input area */
+.operator-id-input-area {
+    padding: 10px 20px;
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.operator-id-input-area label {
+    font-size: 0.9em;
+    color: #555;
+    white-space: nowrap; /* Keep label on one line */
+}
+
+.operator-id-input-area input {
+    flex-grow: 1;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    font-size: 0.9em;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.operator-id-input-area input:focus {
+    border-color: #e53935;
+}
+
+
+.chat-display {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    border-bottom: 1px solid #eee;
+    scroll-behavior: smooth;
+}
+
+.message {
+    margin-bottom: 15px;
+    padding: 10px 15px;
+    border-radius: 20px;
+    max-width: 75%;
+    word-wrap: break-word;
+    line-height: 1.5;
+}
+
+.user-message {
+    background-color: #e0f7fa; /* Light blue */
+    color: #333;
+    align-self: flex-end;
+    margin-left: auto;
+    border-bottom-right-radius: 5px; /* Slight curve to indicate direction */
+}
+
+.bot-message {
+    background-color: #fce4ec; /* Light pink */
+    color: #333;
+    align-self: flex-start;
+    margin-right: auto;
+    border-bottom-left-radius: 5px; /* Slight curve */
+}
+
+.chat-input-area {
+    display: flex;
+    padding: 15px 20px;
+    gap: 10px;
+    background-color: #f8f8f8;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.chat-input-area input {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    font-size: 1em;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.chat-input-area input:focus {
+    border-color: #e53935; /* RedBus red on focus */
+}
+
+.chat-input-area button {
+    background-color: #e53935; /* RedBus red */
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.chat-input-area button:hover {
+    background-color: #c62828; /* Darker red on hover */
+}
+
+/* Scrollbar styles (Webkit browsers) */
+.chat-display::-webkit-scrollbar {
+    width: 8px;
+}
+
+.chat-display::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.chat-display::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+.chat-display::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

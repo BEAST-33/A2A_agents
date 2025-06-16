@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RedBus Deal Chatbot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            RedBus Deal Chatbot
+        </div>
+        <div class="operator-id-input-area">
+            <label for="operator-id-input">Operator ID (e.g., 15926 for default India bus):</label>
+            <input type="number" id="operator-id-input" value="15926" placeholder="Enter Operator ID">
+        </div>
+        <div class="chat-display" id="chat-display">
+            <div class="message bot-message">
+                Hello! I'm RedBusBot. Ask me about RedBus deals.
+                (e.g., 'What are the latest deals?', 'Are there any cashback offers?').
+                Today's Date: <span id="current-date"></span>
+            </div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="user-input" placeholder="Type your message here...">
+            <button id="send-button">Send</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
