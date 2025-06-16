@@ -1,0 +1,58 @@
+2025-06-16 15:01:26,646 - INFO - Starting bus analyzer
+2025-06-16 15:01:26,647 - INFO - Initializing BusServiceAnalyzer
+2025-06-16 15:01:26,647 - INFO - Using Ollama model: mistral:7b-instruct
+2025-06-16 15:01:26,647 - INFO - Fetching data for operator: 22, source: 122, dest: 124
+2025-06-16 15:02:27,300 - INFO - Starting bus analyzer
+2025-06-16 15:02:27,301 - INFO - Initializing BusServiceAnalyzer
+2025-06-16 15:02:27,301 - INFO - Using Ollama model: mistral:7b-instruct
+2025-06-16 15:02:27,301 - INFO - Fetching data for operator: 22, source: 122, dest: 124
+2025-06-16 15:02:27,305 - DEBUG - Starting new HTTP connection (1): rbplus-api-prod.redbus.in:8085
+2025-06-16 15:02:27,578 - DEBUG - http://rbplus-api-prod.redbus.in:8085 "GET /rpwapp/v1/rnr/servicewiseratings/22?limit=10&page=1&sourceId=122&destId=124&sortOrder=desc&sortColumn=sales HTTP/1.1" 200 None
+2025-06-16 15:02:27,617 - INFO - Processing 2 services
+2025-06-16 15:02:27,618 - INFO - Processing service 1/2
+2025-06-16 15:02:27,618 - INFO - Processing 15 tags
+2025-06-16 15:02:27,618 - INFO - Processed 8 unique tags in 0.00 seconds
+2025-06-16 15:02:27,618 - INFO - Starting LLM analysis
+2025-06-16 15:02:27,618 - DEBUG - Prepared prompt of length: 1134
+2025-06-16 15:02:27,618 - INFO - Sending request to Ollama API
+2025-06-16 15:02:27,621 - DEBUG - Starting new HTTP connection (1): 10.166.8.126:11434
+2025-06-16 15:14:24,616 - INFO - Starting bus analyzer
+2025-06-16 15:14:24,616 - INFO - Initializing BusServiceAnalyzer
+2025-06-16 15:14:24,616 - INFO - Using Ollama model: mistral:7b-instruct
+2025-06-16 15:14:24,616 - INFO - Fetching data for operator: 22, source: 122, dest: 124
+2025-06-16 15:14:24,982 - INFO - Processing 2 services
+2025-06-16 15:14:24,982 - INFO - Processing service 1/2
+2025-06-16 15:14:24,983 - INFO - Processing 15 tags
+2025-06-16 15:14:24,983 - INFO - Processed 8 unique tags in 0.00 seconds
+2025-06-16 15:14:24,983 - INFO - Starting LLM analysis
+2025-06-16 15:14:24,983 - DEBUG - Prepared prompt of length: 1134
+2025-06-16 15:14:24,983 - INFO - Sending request to Ollama API
+2025-06-16 15:56:55,538 - INFO - LLM analysis completed in 2550.55 seconds
+2025-06-16 15:56:55,539 - INFO - Processing service 2/2
+2025-06-16 15:56:55,539 - INFO - Processing 17 tags
+2025-06-16 15:56:55,539 - INFO - Processed 9 unique tags in 0.00 seconds
+2025-06-16 15:56:55,539 - INFO - Starting LLM analysis
+2025-06-16 15:56:55,539 - DEBUG - Prepared prompt of length: 1219
+2025-06-16 15:56:55,539 - INFO - Sending request to Ollama API
+2025-06-16 15:57:19,860 - INFO - LLM analysis completed in 24.32 seconds
+2025-06-16 15:57:19,862 - INFO - Total execution time: 2575.25 seconds
+2025-06-16 16:13:10,567 - INFO - Starting bus analyzer
+2025-06-16 16:13:10,568 - INFO - Initializing BusServiceAnalyzer
+2025-06-16 16:13:10,568 - INFO - Using Ollama model: mistral:7b-instruct
+2025-06-16 16:13:10,568 - INFO - Fetching data for operator: 22, source: 122, dest: 124
+2025-06-16 16:13:10,902 - INFO - Processing 2 services
+2025-06-16 16:13:10,903 - INFO - Processing service 1/2
+2025-06-16 16:13:10,903 - INFO - Processing 15 tags
+2025-06-16 16:13:10,903 - INFO - Processed 8 unique tags in 0.00 seconds
+2025-06-16 16:13:10,903 - INFO - Starting LLM analysis
+2025-06-16 16:13:10,903 - DEBUG - Prepared prompt of length: 1134
+2025-06-16 16:13:10,903 - INFO - Sending request to Ollama API
+2025-06-16 16:16:07,748 - INFO - LLM analysis completed in 176.84 seconds
+2025-06-16 16:16:07,756 - INFO - Processing service 2/2
+2025-06-16 16:16:07,756 - INFO - Processing 17 tags
+2025-06-16 16:16:07,756 - INFO - Processed 9 unique tags in 0.00 seconds
+2025-06-16 16:16:07,756 - INFO - Starting LLM analysis
+2025-06-16 16:16:07,756 - DEBUG - Prepared prompt of length: 1219
+2025-06-16 16:16:07,756 - INFO - Sending request to Ollama API
+2025-06-16 16:16:31,077 - INFO - LLM analysis completed in 23.32 seconds
+2025-06-16 16:16:31,082 - INFO - Total execution time: 200.51 seconds
