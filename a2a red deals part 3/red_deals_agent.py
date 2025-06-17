@@ -67,8 +67,8 @@ def count_tokens(text, model="cl100k_base"):
         return 0
 
 def generate_chat_response(user_message: str, deals_data: Optional[Dict[str, Any]] = None) -> tuple[str, dict]:
-    api_url = os.getenv("CHAT_API", "http://10.120.17.147:11434/api/chat")
-    model_name = os.getenv("CHAT_MODEL", "qwen2.5-coder:14b")
+    api_url = os.getenv("CHAT_API", "http://10.166.8.126:11434/api/chat")
+    model_name = os.getenv("CHAT_MODEL", "mistral:7b-instruct")
     system_prompt = _load_system_prompt()
     
     token_usage = {"system_tokens": 0, "user_tokens": 0, "input_tokens": 0, "output_tokens": 0, "total_tokens": 0}
@@ -85,7 +85,8 @@ def generate_chat_response(user_message: str, deals_data: Optional[Dict[str, Any
         enhanced_message = user_message
         if deals_data:
             deals_json = json.dumps(deals_data, indent=2)
-            enhanced_message = f"{user_message}\n\nHere is the deals data to analyze:\n{deals_json}"
+            current_date = datetime.now(UTC).strftime("%Y-%m-%d")
+            enhanced_message = f"{user_message}\n\nHere is the deals data to analyze, and today's date is {current_date}:\n{deals_json}"
             enhanced_tokens = count_tokens(enhanced_message)
             token_usage["user_tokens"] = enhanced_tokens
             token_usage["input_tokens"] = token_usage["system_tokens"] + enhanced_tokens
@@ -96,7 +97,11 @@ def generate_chat_response(user_message: str, deals_data: Optional[Dict[str, Any
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": enhanced_message}
             ], 
-            "model": model_name
+            "model": model_name,
+            "options": {
+                "temperature": 0.0
+                
+            }
         }
         headers = {'Content-Type': 'application/json'}
         

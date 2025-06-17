@@ -1,0 +1,23 @@
+{
+    "jsonrpc": "2.0",
+    "id": "reddeals-task-001",
+    "result": {
+        "id": "reddeals-task-001",
+        "status": {
+            "state": "completed",
+            "timestamp": "2025-06-17T08:47:28.481166+00:00"
+        },
+        "history": [],
+        "artifacts": [
+            {
+                "parts": [
+                    {
+                        "type": "text",
+                        "text": " Here is a list of campaigns with their details:\n\n1. Campaign ID: 517634, Type: PERCENT, Code: ALLC_02c8f9a6, Description: 20% Extra OFF, Validity: 6/1/2024 - 6/30/2024, Minimum ticket fare: INR 101, Maximum discount limit: INR 99999\n2. Campaign ID: 517633, Type: PERCENT, Code: ALLC_8f6a6c8d, Description: 15% Extra OFF, Validity: 6/1/2024 - 6/30/2024, Minimum ticket fare: INR 101, Maximum discount limit: INR 99999\n3. Campaign ID: 517632, Type: PERCENT, Code: ALLC_8f6a6c8d, Description: 10% Extra OFF, Validity: 6/1/2024 - 6/30/2024, Minimum ticket fare: INR 101, Maximum discount limit: INR 99999\n4. Campaign ID: 517631, Type: PERCENT, Code: ALLC_8f6a6c8d, Description: 5% Extra OFF, Validity: 6/1/2024 - 6/30/2024, Minimum ticket fare: INR 101, Maximum discount limit: INR 99999\n5. Campaign ID: 517630, Type: PERCENT, Code: ALLC_8f6a6c8d, Description: 2.5% Extra OFF, Validity: 6/1/2024 - 6/30/2024, Minimum ticket fare: INR 101, Maximum discount limit: INR 99999\n6. Campaign ID: 517629, Type: PERCENT, Code: ALLC_8f6a6c8d, Description: 1% Extra OFF, Validity: 6/1/2024 - 6/30/2024, Minimum ticket fare: INR 101, Maximum discount limit: INR 99999\n7. Campaign ID: 517628, Type: PERCENT, Code: ALLC_8f6a6c8d, Description: 0.5% Extra OFF, Validity: 6/1/2024 - 6/30/2024, Minimum ticket fare: INR 101, Maximum discount limit: INR 99999\n8. Campaign ID: 517627, Type: PERCENT, Code: ALLC_8f6a6c8d, Description: 0.25% Extra OFF, Validity: 6/1/2024 - 6/30/2024, Minimum ticket fare: INR 101, Maximum discount limit: INR 99999\n9. Campaign ID: 517626, Type: PERCENT, Code: ALLC_8f6a6c8d, Description: 0.1% Extra OFF, Validity: 6/1/2024 - 6/30/2024, Minimum ticket fare: INR 101, Maximum discount limit: INR 99999\n10. Campaign ID: 517625, Type: PERCENT, Code: ALLC_8f6a6c8d, Description: 0% Extra OFF, Validity: 6/1/2024 - 6/30/2024, Minimum ticket fare: INR 101, Maximum discount limit: INR 99999\n\nAll these campaigns are valid for the days of the week: Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, and Saturday. They all have a minimum ticket fare of INR 101 and a maximum discount limit of INR 99999. The discount percentages range from 0% to 20%."
+                    }
+                ],
+                "index": 0
+            }
+        ]
+    }
+}% 
