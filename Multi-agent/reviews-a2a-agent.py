@@ -111,7 +111,7 @@ async def agent_manifest(request: Request):
     return {
         "name": "Bus Review Agent",
         "description": "Agent that fetches a user review for a given bus route.",
-        "url": "http://localhost:8021/",
+        "url": "http://localhost:8024/",
         "version": "1.0.0",
         "provider": {
             "organization": "redBus",
@@ -180,4 +180,4 @@ async def agent_manifest(request: Request):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("reviews-a2a-agent:app", host="localhos", port=8021, reload=True)
+    uvicorn.run("reviews-a2a-agent:app", host="localhost", port=8024, reload=True)

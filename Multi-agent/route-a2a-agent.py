@@ -18,7 +18,7 @@ logger = logging.getLogger("my_app_logger")
 logger.setLevel(logging.INFO)
 
 # --- Configuration ---
-CASSANDRA_HOSTS = os.environ.get("CASSANDRA_HOSTS", "localhost").split(",")
+CASSANDRA_HOSTS = os.environ.get("CASSANDRA_HOSTS", "10.5.10.190").split(",")
 CASSANDRA_PORT = 9042
 CASSANDRA_USER = "cassandra"
 CASSANDRA_PASSWORD = "cassandra"
@@ -597,7 +597,7 @@ async def agent_manifest(request: Request):
             "generates a Nomic embedding, and runs Approximate Nearest Neighbor (ANN) queries on a Cassandra database. "
             "Filters by extracted locations if found, and returns the top 5 most similar matches for the provided text."
         ),
-        "url": "http://localhost:8053/",
+        "url": "http://10.5.10.190:8053/",
         "version": "1.0.2", # Increment version due to new features
         "provider": {
             "organization": "redBus",
